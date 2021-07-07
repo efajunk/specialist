@@ -7,7 +7,7 @@ number = int(input())
 
 if len(str(number)) > 1:
 	if len(number // 10) == 1:
-		print(f'Последнее число введенного двузначное числа: {number % 10}')
+		print(f'Последнее число введенного двузначного числа: {number % 10}')
 	else:
 		print(f'Число {number} не является двузначным')
 else:
