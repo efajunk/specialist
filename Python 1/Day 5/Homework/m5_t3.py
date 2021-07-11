@@ -11,3 +11,15 @@ Out: 1 бутылка
 In: 22
 Out: 22 бутылки
 """
+
+endings = ['ок', 'ка', 'ки']
+bottles_count = int(input('Введите количество бутылок: '))
+bottle_word = 'бутыл'
+
+if 21 > bottles_count > 4 or 4 < (bottles_count % 10) < 10:
+    print(f'{bottles_count} {bottle_word}{endings[0]}')
+elif bottles_count % 10 == 1:
+    print(f'{bottles_count} {bottle_word}{endings[1]}')
+else:
+    print(f'{bottles_count} {bottle_word}{endings[2]}')
+
