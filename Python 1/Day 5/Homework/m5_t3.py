@@ -23,3 +23,18 @@ elif bottles_count % 10 == 1:
 else:
     print(f'{bottles_count} {bottle_word}{endings[2]}')
 
+def func_3(bottles_count):
+    endings = ['ок', 'ка', 'ки']
+    bottle_word = 'бутыл'
+    bottles_find = bottles_count % 100
+
+    if 21 > bottles_find > 4 or 4 < (bottles_find % 10) < 10:
+        return f'{bottles_count} {bottle_word}{endings[0]}'
+    elif bottles_count % 10 == 1:
+        return f'{bottles_count} {bottle_word}{endings[1]}'
+    else:
+        return f'{bottles_count} {bottle_word}{endings[2]}'
+
+count = int(input('Введите количество бутылок: '))
+result = func_3(count)
+print(result)
