@@ -38,3 +38,18 @@ def func_3(bottles_count):
 count = int(input('Введите количество бутылок: '))
 result = func_3(count)
 print(result)
+
+def func_5(bottles_count, bottle_word='бутыл'): # local variable
+    endings = ['ок', 'ка', 'ки']
+#     bottle_word = 'бутыл'
+    bottles_find = bottles_count % 100
+
+    if 21 > bottles_find > 4 or 4 < (bottles_find % 10) < 10:
+        return bottle_word, endings[0]
+    elif bottles_count % 10 == 1:
+        return bottle_word, endings[1]
+    else:
+        return bottle_word, endings[2]
+    
+for i in [3, 4, 4]:
+    print(f'{i} Бутыл{func_5(i)[1]}')
