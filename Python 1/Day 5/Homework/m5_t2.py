@@ -23,3 +23,15 @@ for i in range(size, 0, -1):
         print(alpha[j], i, sep='', end=' ')
 #         print(alpha[j], digits[i], sep='', end=' ')
     print('')
+    
+##V2
+
+size = int(input('Введите размер шахматной доски от 0 до 20: '))
+
+alpha = string.ascii_lowercase
+
+for i in range(size, 0, -1):
+    for j in range(size):
+#        print(alpha[j], i, sep='', end=' ')
+        print(f'{alpha[j] + str(i): <3}', end=' ')
+    print('')
