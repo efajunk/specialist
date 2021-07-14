@@ -32,7 +32,16 @@ def drop_check() -> list:
     recheck = [0, 0, 0, 0]
     return recheck
 
+def unpack_mistakes_keys(dict_of_mistakes):
+    mistakes_names_out = []
+    for i in dict_of_mistakes.keys():
+        mistakes_names_out.append(i)
+    return mistakes_names_out
+
 def password_check(pass_check, dict_of_mistakes):
+    mistakes_names = unpack_mistakes_keys()
+#     for i in dict_of_mistakes.keys():
+#         mistakes_names.append(i)
     check = drop_check()
     mistakes = dict_of_mistakes
     uppercase = st.ascii_uppercase
@@ -44,19 +53,19 @@ def password_check(pass_check, dict_of_mistakes):
             for i in pass_check:
                 if i in uppercase:
                     check[0] = 1
-                    mistakes['upper'] = 0
+                    mistakes[mistakes_names[0]] = 0
             for i in pass_check:        
                 if i in lowercase:
                     check[1] = 1
-                    mistakes['lower'] = 0
+                    mistakes[mistakes_names[1]] = 0
             for i in pass_check:            
                 if i in digits:
                     check[2] = 1
-                    mistakes['digits'] = 0
+                    mistakes[mistakes_names[2]] = 0
             for i in pass_check:            
                 if i in specials:
                     check[3] = 1
-                    mistakes['specials'] = 0
+                    mistakes[mistakes_names[3]] = 0
             break
     else:
         return 'len_error', mistakes
@@ -87,8 +96,7 @@ print('Здравствуй человек! Тебе предстоит ввес
     'Всего 4 набора различных символов.\n'
     'В пароле обязательно должен быть хотя бы один символ из каждого набора.\n'
     'Длина пароля от 8(мин) до 15(макс) символов.\n'
-    'Максимальное количество попыток ввода неправильного пароля - 5.\n'
-    'Удачи!')
+    'Максимальное количество попыток ввода неправильного пароля - 5.')
 print('*'*80)
 
 check = [0, 0, 0, 0]
@@ -114,6 +122,10 @@ for count in range(4, -1, -1):
     
     else:
         print(f'Пароль не отвечает необходимым требованиям. Попробуйте ещё раз.')
+#         mistakes_names = 
+#         mistakes_out = []
+#             for i in dict_of_mistakes.keys():
+#         mistakes_names.append(i)
         if mistakes_out['upper']:
             print(mistakes_out['upper'])
         if mistakes_out['lower']:
@@ -125,3 +137,4 @@ for count in range(4, -1, -1):
         check = drop_check()
         print(count_check(count))
     
+
