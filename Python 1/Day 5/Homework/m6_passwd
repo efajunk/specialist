@@ -1,0 +1,97 @@
+'''
+Задача №1
+Вход:
+Пользователь должен ввести правильный пароль, состоящий из:
+цифр, букв латинского алфавита(строчные и прописные) и специальных символов  special = '_!@#$%^&'.
+Всего 4 набора различных символов.
+В пароле обязательно должен быть хотя бы один символ из каждого набора.
+Длина пароля от 8(мин) до 15(макс) символов.
+Максимальное количество попыток ввода неправильного пароля - 5.
+Каждый раз выводим номер попытки.
+Желательно выводить пояснение, почему пароль не принят и что нужно исправить.
+
+import string as st
+st.digits
+st.ascii_lowercase
+st.ascii_uppercase
+special = '_!@#$%^&'
+
+Выход:
+Написать, что ввели правильный пароль и записать его в файл pass.txt
+
+Пример: 
+хороший пароль -> o58anuahaunH!
+хороший пароль -> aaaAAA111!!!
+плохой пароль -> saucacAusacu8
+'''
+import string as st
+
+check = [0, 0, 0, 0]
+
+uppercase = st.ascii_uppercase
+lowercase = st.ascii_lowercase
+digits = st.digits
+specials = '_!@#$%^&'
+
+mistakes = {
+    'upper' : 'Не хватает буквы в верхнем регистре',
+    'lower' : 'Не хватает буквы в нижнем регистре',
+    'digits' : 'Не хватает цифры',
+    'specials' : 'Не хватает спецсимвола'
+    }
+
+for i in range(5):
+    password = input('Введите пароль: ')
+    while check:
+        for i in password:
+            if i in uppercase:
+                check[0] = 1
+                mistakes['upper'] = 0
+        for i in password:        
+            if i in lowercase:
+                check[1] = 1
+                mistakes['lower'] = 0
+        for i in password:            
+            if i in digits:
+                check[2] = 1
+                mistakes['digits'] = 0
+        for i in password:            
+            if i in specials:
+                check[3] = 1
+                mistakes['specials'] = 0
+        break
+    if min(check) == 1:
+        break
+    print('Пароль не отвечает необходимым требованиям: ')
+
+if min(check) == 1:
+    print('done')
+else:
+    if mistakes['upper']:
+        print(mistakes['upper'])
+    if mistakes['lower']:
+        print(mistakes['lower'])
+    if mistakes['digits']:
+        print(mistakes['digits'])
+    if mistakes['specials']:
+        print(mistakes['specials'])
+        
+def password_check(password, ):
+    while check:
+        for i in password:
+            if i in uppercase:
+                check[0] = 1
+                mistakes['upper'] = 0
+        for i in password:        
+            if i in lowercase:
+                check[1] = 1
+                mistakes['lower'] = 0
+        for i in password:            
+            if i in digits:
+                check[2] = 1
+                mistakes['digits'] = 0
+        for i in password:            
+            if i in specials:
+                check[3] = 1
+                mistakes['specials'] = 0
+        break
