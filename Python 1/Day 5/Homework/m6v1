@@ -1,0 +1,113 @@
+'''
+Задача №1
+Вход:
+Пользователь должен ввести правильный пароль, состоящий из:
+цифр, букв латинского алфавита(строчные и прописные) и специальных символов  special = '_!@#$%^&'.
+Всего 4 набора различных символов.
+В пароле обязательно должен быть хотя бы один символ из каждого набора.
+Длина пароля от 8(мин) до 15(макс) символов.
+Максимальное количество попыток ввода неправильного пароля - 5.
+Каждый раз выводим номер попытки.
+Желательно выводить пояснение, почему пароль не принят и что нужно исправить.
+
+import string as st
+st.digits
+st.ascii_lowercase
+st.ascii_uppercase
+special = '_!@#$%^&'
+
+Выход:
+Написать, что ввели правильный пароль и записать его в файл pass.txt
+
+Пример: 
+хороший пароль -> o58anuahaunH!
+хороший пароль -> aaaAAA111!!!
+плохой пароль -> saucacAusacu8
+'''
+import string as st
+import os
+
+def count_check(count_in: int) -> str:
+    if count_in != 0:
+        return f'Осталось попыток {count_in}'
+    else:
+        return f'Попыток больше не осталось. Попробуйте позже.'
+    
+def mistakes_initiate() -> dict:
+    mistakes_dict = {
+    'upper' : 'Не хватает буквы в верхнем регистре',
+    'lower' : 'Не хватает буквы в нижнем регистре',
+    'digits' : 'Не хватает цифры',
+    'specials' : 'Не хватает спецсимвола'
+    }
+    return mistakes_dict
+
+def drop_check() -> list:
+    recheck = [0, 0, 0, 0]
+    return recheck
+
+print('*'*80)
+print('Здравствуй человек! Тебе предстоит ввести правильный пароль, состоящий из:\n'
+    '1. Цифр\n'
+    '2. Букв латинского алфавита(строчные и прописные)\n'
+    '3. Специальных символов special = "_!\@#$%^&".\n'
+    'Всего 4 набора различных символов.\n'
+    'В пароле обязательно должен быть хотя бы один символ из каждого набора.\n'
+    'Длина пароля от 8(мин) до 15(макс) символов.\n'
+    'Максимальное количество попыток ввода неправильного пароля - 5.')
+print('*'*80)
+
+check = drop_check()
+
+uppercase = st.ascii_uppercase
+lowercase = st.ascii_lowercase
+digits = st.digits
+specials = '_!@#$%^&'
+
+mistakes = mistakes_initiate()
+
+for count in range(4, -1, -1):
+    password = input('Введите пароль: ')
+    if len(password) > 8:
+        while check:
+            for i in password:
+                if i in uppercase:
+                    check[0] = 1
+                    mistakes['upper'] = 0
+            for i in password:        
+                if i in lowercase:
+                    check[1] = 1
+                    mistakes['lower'] = 0
+            for i in password:            
+                if i in digits:
+                    check[2] = 1
+                    mistakes['digits'] = 0
+            for i in password:            
+                if i in specials:
+                    check[3] = 1
+                    mistakes['specials'] = 0
+            break
+    else:
+        print(f'Не достаточная длинна пароля. Требуемая длинна 8. Введённая: {len(password)}')
+        print(count_check(count))
+        check = drop_check()
+        continue
+    if min(check) == 1:
+        print(f'Вы великолепны! Пароль будет записан в {os.path.abspath(os.getcwd())}\excellent_password.txt')
+        with open('excellent_password.txt', 'w', encoding='utf-8') as password_export:
+            password_export.write(password)
+        break
+    else:
+        print(f'Пароль не отвечает необходимым требованиям. Попробуйте ещё раз.')
+        if mistakes['upper']:
+            print(mistakes['upper'])
+        if mistakes['lower']:
+            print(mistakes['lower'])
+        if mistakes['digits']:
+            print(mistakes['digits'])
+        if mistakes['specials']:
+            print(mistakes['specials'])
+        mistakes = mistakes_initiate()
+        check = drop_check()
+        print(count_check(count))
+
