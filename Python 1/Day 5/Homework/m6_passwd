@@ -28,12 +28,12 @@ special = '_!@#$%^&'
 import string as st
 import os
 
+def drop_check() -> list:
+    recheck = [0, 0, 0, 0]
+    return recheck
+
 def password_check(pass_check, dict_of_mistakes):
-    mistakes_names = []
-    for i in dict_of_mistakes.keys():
-        mistakes_names.append(i)
-    print(mistakes_names)
-    check = [0, 0, 0, 0]
+    check = drop_check()
     mistakes = dict_of_mistakes
     uppercase = st.ascii_uppercase
     lowercase = st.ascii_lowercase
@@ -79,10 +79,6 @@ def mistakes_initiate() -> dict:
     }
     return mistakes_dict
 
-def drop_check() -> list:
-    recheck = [0, 0, 0, 0]
-    return recheck
-
 print('*'*80)
 print('Здравствуй человек! Тебе предстоит ввести правильный пароль, состоящий из:\n'
     '1. Цифр\n'
@@ -91,7 +87,8 @@ print('Здравствуй человек! Тебе предстоит ввес
     'Всего 4 набора различных символов.\n'
     'В пароле обязательно должен быть хотя бы один символ из каждого набора.\n'
     'Длина пароля от 8(мин) до 15(макс) символов.\n'
-    'Максимальное количество попыток ввода неправильного пароля - 5.')
+    'Максимальное количество попыток ввода неправильного пароля - 5.\n'
+    'Удачи!')
 print('*'*80)
 
 check = [0, 0, 0, 0]
