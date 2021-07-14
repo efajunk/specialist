@@ -40,7 +40,7 @@ mistakes = {
     'specials' : 'Не хватает спецсимвола'
     }
 
-for i in range(5):
+for count in range(4, -1, -1):
     password = input('Введите пароль: ')
     while check:
         for i in password:
@@ -62,7 +62,27 @@ for i in range(5):
         break
     if min(check) == 1:
         break
-    print('Пароль не отвечает необходимым требованиям: ')
+    else:
+        if mistakes['upper']:
+            print(mistakes['upper'])
+        if mistakes['lower']:
+            print(mistakes['lower'])
+        if mistakes['digits']:
+            print(mistakes['digits'])
+        if mistakes['specials']:
+            print(mistakes['specials'])
+    mistakes = {
+    'upper' : 'Не хватает буквы в верхнем регистре',
+    'lower' : 'Не хватает буквы в нижнем регистре',
+    'digits' : 'Не хватает цифры',
+    'specials' : 'Не хватает спецсимвола'
+    }
+    print(f'Пароль не отвечает необходимым требованиям. Попробуйте ещё раз.')
+    if count != 0:
+        print(f'Осталось попыток {count}')
+    else:
+        print('Попыток больше не осталось')
+    
 
 if min(check) == 1:
     print('done')
@@ -76,7 +96,11 @@ else:
     if mistakes['specials']:
         print(mistakes['specials'])
         
-def password_check(password, ):
+def password_check(password):
+    uppercase = st.ascii_uppercase
+    lowercase = st.ascii_lowercase
+    digits = st.digits
+    specials = '_!@#$%^&'
     while check:
         for i in password:
             if i in uppercase:
